@@ -23,6 +23,10 @@ def create_chat_completion(messages, model=None, temperature=None, max_tokens=No
             max_tokens=max_tokens
         )
     
+
+    logger.info(f"Number of tokens used: {response.usage.total_tokens}")
+    logger.info(f"Number of prompt tokens used: {response.usage.prompt_tokens}")
+    logger.info(f"Number of completion tokens used: {response.usage.completion_tokens}")
     logger.info(f"Request: {messages}")
     logger.info(f"Response: {response.choices[0].message['content']}")
 
