@@ -1,6 +1,7 @@
 import openai
 from config import Config
 cfg = Config()
+from log_config import logger
 
 openai.api_key = cfg.openai_api_key
 
@@ -21,5 +22,8 @@ def create_chat_completion(messages, model=None, temperature=None, max_tokens=No
             temperature=temperature,
             max_tokens=max_tokens
         )
+    
+    logger.info(f"Request: {messages}")
+    logger.info(f"Response: {response.choices[0].message['content']}")
 
     return response.choices[0].message["content"]
